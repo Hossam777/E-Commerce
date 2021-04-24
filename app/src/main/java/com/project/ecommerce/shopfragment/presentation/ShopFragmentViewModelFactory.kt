@@ -1,12 +1,12 @@
-package com.project.ecommerce.homescreen.presentation
+package com.project.ecommerce.shopfragment.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 @Suppress("UNCHECKED_CAST")
-class HomeViewModelFactory ()
+class ShopFragmentViewModelFactory ()
     : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return HomeViewModel() as T
+        return ShopFragmentViewModel() as T
     }
 }
