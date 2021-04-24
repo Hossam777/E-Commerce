@@ -1,6 +1,7 @@
 package com.project.ecommerce.app
 
 import android.app.Application
+import com.project.ecommerce.homefragment.di.homeFragmentModule
 import com.project.ecommerce.homescreen.di.homeModule
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
