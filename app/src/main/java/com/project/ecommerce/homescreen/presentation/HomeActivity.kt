@@ -33,22 +33,35 @@ class HomeActivity : AppCompatActivity(), KodeinAware {
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener{ item -> onNavigationSelected(item)}
         supportFragmentManager.commit {
-            setReorderingAllowed(true)
-            add<HomeFragment>(R.id.homeScreenFragment)
-            add<ShopFragment>(R.id.homeScreenFragment)
+            //setReorderingAllowed(true)
+            add<HomeFragment>(R.id.homeScreenFragment, "HomeFragment")
         }
     }
 
     private fun onNavigationSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.home -> {
-                supportFragmentManager.commit {
-                    replace<HomeFragment>(R.id.homeScreenFragment)
+                if(supportFragmentManager.findFragmentByTag("HomeFragment") == null){
+                    supportFragmentManager.commit {
+                        add<HomeFragment>(R.id.homeScreenFragment, "HomeFragment")
+                    }
+                }else{
+                    supportFragmentManager.commit {
+                        show(supportFragmentManager.findFragmentByTag("HomeFragment")!!)
+                        hide(supportFragmentManager.findFragmentByTag("ShopFragment")!!)
+                    }
                 }
             }
             R.id.shop -> {
-                supportFragmentManager.commit {
-                    replace<ShopFragment>(R.id.homeScreenFragment)
+                if(supportFragmentManager.findFragmentByTag("ShopFragment") == null){
+                    supportFragmentManager.commit {
+                        add<ShopFragment>(R.id.homeScreenFragment, "ShopFragment")
+                    }
+                }else{
+                    supportFragmentManager.commit {
+                        hide(supportFragmentManager.findFragmentByTag("HomeFragment")!!)
+                        show(supportFragmentManager.findFragmentByTag("ShopFragment")!!)
+                    }
                 }
             }
             R.id.bag -> {

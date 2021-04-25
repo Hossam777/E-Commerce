@@ -18,10 +18,9 @@ import org.kodein.di.generic.instance
 
 class ShopFragment : Fragment(), KodeinAware {
 
-
     override val kodein by kodein()
     private val viewModelFactory: ShopFragmentViewModelFactory by instance()
-    private val flowController: ShopFragmentFlowController by instance(arg = activity?.supportFragmentManager)
+    private val flowController: ShopFragmentFlowController by instance()
     private lateinit var viewModel: ShopFragmentViewModel
     private lateinit var binding: FragmentShopBinding
     private lateinit var shopRecycler: ShopFragmentRecyclerViewAdapter
@@ -35,7 +34,6 @@ class ShopFragment : Fragment(), KodeinAware {
         val view = binding.root
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-
         setupToolBar()
         binding.radioGroup.setOnCheckedChangeListener { _, checkedId -> radioOnCheckedChangeListener(checkedId) }
         viewModel.fetchShopLists()
@@ -46,7 +44,8 @@ class ShopFragment : Fragment(), KodeinAware {
 
     private fun initShopRecycler() {
         shopRecycler = ShopFragmentRecyclerViewAdapter(){
-            flowController.openShopFragmentStep2(
+            flowController.openShopFragmentLayer2(
+                    activity?.supportFragmentManager,
                     viewModel.radioSelected.value.toString(),
                     it.name,
                     it.id
@@ -79,16 +78,17 @@ class ShopFragment : Fragment(), KodeinAware {
         }
     }
 
-
     private fun setupToolBar() {
         binding.toolBar.findViewById<TextView>(R.id.toolBar_title).text = resources.getText(R.string.categories)
         binding.toolBar.findViewById<ImageButton>(R.id.toolBar_backBtn).visibility = View.INVISIBLE
         binding.toolBar.findViewById<ImageButton>(R.id.toolBar_searchBtn).visibility = View.INVISIBLE
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+
     companion object {
         fun newInstance() = ShopFragment()
     }

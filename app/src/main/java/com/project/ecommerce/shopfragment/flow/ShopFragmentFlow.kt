@@ -1,5 +1,7 @@
 package com.project.ecommerce.shopfragment.flow
 
+import androidx.fragment.app.FragmentManager
+
 interface ShopFragmentFlow {
-    fun openShopFragmentStep2(itemType: String, itemCategory: String, itemID: String)
+    fun openShopFragmentLayer2(supportFragmentManager: FragmentManager?, itemType: String, itemCategory: String, itemID: String)
 }

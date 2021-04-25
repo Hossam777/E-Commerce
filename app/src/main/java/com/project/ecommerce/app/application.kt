@@ -4,6 +4,8 @@ import android.app.Application
 import com.project.ecommerce.homefragment.di.homeFragmentModule
 import com.project.ecommerce.homescreen.di.homeModule
 import com.project.ecommerce.shopfragment.di.shopFragmentModule
+import com.project.ecommerce.shopfragmentlayer2.di.shopFragmentLayer2Module
+import com.project.ecommerce.shopfragmentlayer3.di.shopFragmentLayer3Module
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -14,6 +16,8 @@ class application: Application(), KodeinAware {
         import(homeModule)
         import(homeFragmentModule)
         import(shopFragmentModule)
+        import(shopFragmentLayer2Module)
+        import(shopFragmentLayer3Module)
     }
 
 }

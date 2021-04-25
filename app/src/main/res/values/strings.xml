@@ -24,4 +24,6 @@
     <string name="kids">Kids</string>
     <string name="summer_sales">Summer Sales</string>
     <string name="up_to_50_off">Up to 50% off</string>
+    <string name="view_all_items">view all items</string>
+    <string name="choose_category">Choose Category</string>
 </resources>

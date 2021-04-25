@@ -12,5 +12,5 @@ val shopFragmentModule = Kodein.Module("ShopFragmentModule"){
     bind<ShopListRepository>() with singleton { ShopListRepository() }
     bind<GetShopLists>() with singleton { GetShopLists(instance()) }
     bind<ShopFragmentViewModelFactory>() with provider { ShopFragmentViewModelFactory(instance()) }
-    bind() from factory { supportFragmentManager: FragmentManager -> ShopFragmentFlowController(supportFragmentManager) }
+    bind<ShopFragmentFlowController>() with  provider { ShopFragmentFlowController() }
 }
