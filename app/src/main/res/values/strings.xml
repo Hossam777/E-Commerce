@@ -18,4 +18,10 @@
     <string name="summer_sale">Summer Sale</string>
     <string name="black">Black</string>
     <string name="men_s_hats">Men\'s hats</string>
+    <string name="categories">Categories</string>
+    <string name="women">Women</string>
+    <string name="men">Men</string>
+    <string name="kids">Kids</string>
+    <string name="summer_sales">Summer Sales</string>
+    <string name="up_to_50_off">Up to 50% off</string>
 </resources>

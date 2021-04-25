@@ -12,6 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.project.ecommerce.R
 import com.project.ecommerce.databinding.ActivityHomeBinding
 import com.project.ecommerce.homefragment.presentation.HomeFragment
+import com.project.ecommerce.shopfragment.presentation.ShopFragment
 import org.kodein.di.android.kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
@@ -34,6 +35,7 @@ class HomeActivity : AppCompatActivity(), KodeinAware {
         supportFragmentManager.commit {
             setReorderingAllowed(true)
             add<HomeFragment>(R.id.homeScreenFragment)
+            add<ShopFragment>(R.id.homeScreenFragment)
         }
     }
 
@@ -45,6 +47,9 @@ class HomeActivity : AppCompatActivity(), KodeinAware {
                 }
             }
             R.id.shop -> {
+                supportFragmentManager.commit {
+                    replace<ShopFragment>(R.id.homeScreenFragment)
+                }
             }
             R.id.bag -> {
             }

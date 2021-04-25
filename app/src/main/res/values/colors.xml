@@ -16,4 +16,5 @@
     <color name="Error">#FF2424</color>
     <color name="Hot">#FF3E3E</color>
     <color name="Yellow">#FFBA49</color>
+    <color name="Transparent">#00000000</color>
 </resources>
