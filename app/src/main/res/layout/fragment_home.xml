@@ -8,15 +8,14 @@
             name="viewModel"
             type="com.project.ecommerce.homefragment.presentation.HomeFragmentViewModel" />
     </data>
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/Background"
-            android:paddingBottom="90dp">
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 tools:context=".homefragment.presentation.HomeFragment">
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/Background">
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -225,7 +224,7 @@
                             android:textColor="@color/white"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
+                </ScrollView>
             </FrameLayout>
-        </ScrollView>
 
 </layout>

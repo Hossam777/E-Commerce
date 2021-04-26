@@ -14,10 +14,13 @@
         tools:context=".shopfragmentlayer3.presentation.ShopLayer3Fragment"
         android:background="@color/Background">
 
-        <TextView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:layout_height="match_parent">
+            <include
+                android:id="@+id/toolBar"
+                layout="@layout/toolbar"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
 </layout>

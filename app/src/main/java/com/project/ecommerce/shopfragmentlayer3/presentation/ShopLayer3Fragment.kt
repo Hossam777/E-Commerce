@@ -5,14 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import com.project.ecommerce.R
-import com.project.ecommerce.databinding.FragmentShopLayer2Binding
 import com.project.ecommerce.databinding.FragmentShopLayer3Binding
-import com.project.ecommerce.shopfragmentlayer2.flow.ShopCategoriesFlowController
-import com.project.ecommerce.shopfragmentlayer2.presentation.ShopFragmentLayer2ViewModel
-import com.project.ecommerce.shopfragmentlayer2.presentation.ShopFragmentLayer2ViewModelFactory
 import com.project.ecommerce.shopfragmentlayer3.flow.ShopProductsFlow
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
@@ -27,14 +26,30 @@ class ShopLayer3Fragment : Fragment(), KodeinAware {
     private lateinit var binding: FragmentShopLayer3Binding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shop_layer3, container, false)
         viewModel = ViewModelProvider(this, viewModelFactory).get(ShopLayer3FragmentViewModel::class.java)
         val view = binding.root
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
+        setupToolBar(arguments?.getString("type")!!, arguments?.getString("name")!!)
         return view
+    }
+
+
+    private fun setupToolBar(type: String, category: String) {
+        binding.toolBar.findViewById<TextView>(R.id.toolBar_title).text = "${type} ${category}"
+        var fragment = this
+        binding.toolBar.findViewById<ImageButton>(R.id.toolBar_backBtn).setOnClickListener{
+            activity?.supportFragmentManager?.commit{
+                show(activity?.supportFragmentManager?.findFragmentByTag("ShopFragmentLayer2")!!)
+                remove(fragment)
+            }
+        }
+        binding.toolBar.findViewById<ImageButton>(R.id.toolBar_searchBtn).setOnClickListener{
+
+        }
     }
 
     companion object {

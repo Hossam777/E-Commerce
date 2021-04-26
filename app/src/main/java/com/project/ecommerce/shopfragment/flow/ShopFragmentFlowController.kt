@@ -18,7 +18,7 @@ class ShopFragmentFlowController()
             val fragment = ShopLayer2Fragment()
             fragment.arguments = arguments
             supportFragmentManager?.commit {
-                add(R.id.shopFragmentFrameLayout, fragment, "ShopFragmentLayer2").addToBackStack("ShopFragmentFrameLayout")
+                add(R.id.shopFragmentFrameLayout, fragment, "ShopFragmentLayer2")
             }
         }
     }

@@ -3,16 +3,19 @@ package com.project.ecommerce.homescreen.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.project.ecommerce.R
 import com.project.ecommerce.databinding.ActivityHomeBinding
 import com.project.ecommerce.homefragment.presentation.HomeFragment
 import com.project.ecommerce.shopfragment.presentation.ShopFragment
+import kotlinx.coroutines.*
 import org.kodein.di.android.kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
@@ -73,6 +76,20 @@ class HomeActivity : AppCompatActivity(), KodeinAware {
             else -> return false
         }
         return true
+    }
+
+    var backPressed = 0
+    override fun onBackPressed() {
+        if(backPressed == 0){
+            backPressed++
+            Toast.makeText(this, "Press again to close", Toast.LENGTH_SHORT).show()
+            lifecycleScope.launch {
+                delay(2000)
+                backPressed = 0
+            }
+        }else {
+            super.onBackPressed()
+        }
     }
 
 }

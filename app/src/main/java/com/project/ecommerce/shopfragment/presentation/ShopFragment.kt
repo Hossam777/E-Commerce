@@ -28,12 +28,14 @@ class ShopFragment : Fragment(), KodeinAware {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shop, container, false)
         viewModel = ViewModelProvider(this, viewModelFactory).get(ShopFragmentViewModel::class.java)
         val view = binding.root
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        viewModel.radioSelected.postValue("Women's")
         setupToolBar()
         binding.radioGroup.setOnCheckedChangeListener { _, checkedId -> radioOnCheckedChangeListener(checkedId) }
         viewModel.fetchShopLists()

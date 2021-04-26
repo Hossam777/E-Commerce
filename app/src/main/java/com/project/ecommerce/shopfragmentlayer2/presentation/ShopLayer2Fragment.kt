@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,7 +28,7 @@ class ShopLayer2Fragment : Fragment(), KodeinAware {
     private lateinit var categoriesRecycler:ShopLayer2FragmentRecyclerViewAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shop_layer2, container, false)
         viewModel = ViewModelProvider(this, viewModelFactory).get(ShopFragmentLayer2ViewModel::class.java)
         val view = binding.root
@@ -37,17 +36,18 @@ class ShopLayer2Fragment : Fragment(), KodeinAware {
         binding.lifecycleOwner = this
 
         setupToolBar()
-        initCategoriesRecycler()
+        initCategoriesRecycler(arguments?.getString("type")!!)
         viewModel.fetchCategories()
         subscribeOnCategories()
 
         return view
     }
 
-    private fun initCategoriesRecycler() {
+    private fun initCategoriesRecycler(type: String) {
         categoriesRecycler = ShopLayer2FragmentRecyclerViewAdapter {
             flowController.openShopFragmentLayer3(
                     activity?.supportFragmentManager,
+                    type,
                     it.name,
                     it.id
             )
@@ -67,6 +67,7 @@ class ShopLayer2Fragment : Fragment(), KodeinAware {
         var fragment = this
         binding.toolBar.findViewById<ImageButton>(R.id.toolBar_backBtn).setOnClickListener{
             activity?.supportFragmentManager?.commit{
+                show(activity?.supportFragmentManager?.findFragmentByTag("ShopFragment")!!)
                 remove(fragment)
             }
         }
